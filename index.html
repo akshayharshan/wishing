@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>For Akshaya 🌹</title>
+<title>For Anjuzz 🌹</title>
 
 <!-- Google Fonts: elegant script for headlines, refined serif/sans for body -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -420,7 +420,6 @@
   /* MOBILE SPECIFIC SHOWER FIXES */
   @media (max-width: 480px){
     .shower-stage{ height: 50vh; }
-    /* Made frames smaller so they don't awkwardly clump on tiny screens */
     .shower-frame{ width: 80px; height: 80px; border-width: 2px; border-radius: 8px;} 
     @keyframes photoFall{
       100%{ transform: translateY(calc(50vh + 500px)); }
@@ -439,6 +438,7 @@
     background-clip: text;
     color: transparent;
     text-shadow: 0 0 40px rgba(194, 65, 90, 0.3);
+    margin-bottom: 8px;
   }
 
   #page4 .date-badge{
@@ -451,6 +451,24 @@
     text-transform: uppercase;
     color: var(--rose-red-deep);
     font-weight: 600;
+  }
+
+  /* NEW FINAL MESSAGE ANIMATION */
+  .final-message {
+    margin-top: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    line-height: 1.6;
+    color: var(--text-soft);
+    max-width: 500px;
+    animation: fadeUpMessage 1.5s ease forwards;
+    animation-delay: 1.2s; 
+    opacity: 0;
+  }
+
+  @keyframes fadeUpMessage {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 
   /* ===================================================================
@@ -478,20 +496,19 @@
         <div class="envelope-flap"></div>
         <div class="envelope-seal">🌹</div>
       </div>
-      <p id="tap-text">I made something for you, Akshaya...</p>
+      <p id="tap-text">I made something for you, Anjuzz...</p>
       <p id="tap-hint">Tap to open</p>
     </div>
   </section>
 
   <!-- ================= PAGE 2: THE JOURNEY ================= -->
   <section id="page2" class="page">
-    <h2>Another beautiful year...</h2>
+    <h2>Another year of you being you...</h2>
 
     <p class="page-text">
-      This past year with you has been one of the best of my life. You are the best thing
-      that has happened to me, and you've supported me through every high and every low
-      without ever asking for anything in return. Here's to many more beautiful years
-      together, Akshaya.
+      Watching you navigate this past year has been genuinely inspiring. You handle every high 
+      and low with such a unique grace and an unbreakable spirit. I am constantly in awe of 
+      the way you carry yourself and support the people around you. 
     </p>
 
     <button id="toPage3Btn" class="btn">Next 🌹</button>
@@ -499,70 +516,84 @@
 
   <!-- ================= PAGE 2.5: THE PHOTO SHOWER ================= -->
   <section id="photoShower" class="page">
-    <h2>Your beautiful pics shower...</h2>
-    <p class="page-text">Just a little rain of your gorgeous smiles.</p>
+    <h2>Your unmistakable energy...</h2>
+    <p class="page-text">Just a quick glimpse of that unstoppable attitude.</p>
 
     <div class="shower-stage">
-      <!-- 📷 14 falling photos (Doubled density for a fuller shower) -->
+      <!-- 📷 14 falling photos -->
       
-      <!-- Set 1 -->
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-1"><img src="images/image1.png" alt="Her Smile 1"></div>
+        <div class="photo-frame shower-frame tilt-1"><img src="images/image1.png" alt="Anjuzz 1"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-2"><img src="images/image2.png" alt="Her Smile 2"></div>
+        <div class="photo-frame shower-frame tilt-2"><img src="images/image2.png" alt="Anjuzz 2"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-3"><img src="images/image3.png" alt="Her Smile 3"></div>
+        <div class="photo-frame shower-frame tilt-3"><img src="images/image3.png" alt="Anjuzz 3"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-4"><img src="images/image4.png" alt="Her Smile 4"></div>
+        <div class="photo-frame shower-frame tilt-4"><img src="images/image4.png" alt="Anjuzz 4"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-5"><img src="images/image5.png" alt="Her Smile 5"></div>
+        <div class="photo-frame shower-frame tilt-5"><img src="images/image5.png" alt="Anjuzz 5"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-1"><img src="images/image6.png" alt="Her Smile 6"></div>
+        <div class="photo-frame shower-frame tilt-1"><img src="images/image6.png" alt="Anjuzz 6"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-2"><img src="images/image7.png" alt="Her Smile 7"></div>
+        <div class="photo-frame shower-frame tilt-2"><img src="images/image7.png" alt="Anjuzz 7"></div>
+      </div>
+            <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-2"><img src="images/image8.png" alt="Anjuzz 8"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-2"><img src="images/image9.png" alt="Anjuzz 9"></div>
       </div>
 
-      <!-- Set 2 (Duplicates to make the shower thicker) -->
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-3"><img src="images/image1.png" alt="Her Smile 1"></div>
+        <div class="photo-frame shower-frame tilt-3"><img src="images/image1.png" alt="Anjuzz 1"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-4"><img src="images/image2.png" alt="Her Smile 2"></div>
+        <div class="photo-frame shower-frame tilt-4"><img src="images/image2.png" alt="Anjuzz 2"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-5"><img src="images/image3.png" alt="Her Smile 3"></div>
+        <div class="photo-frame shower-frame tilt-5"><img src="images/image3.png" alt="Anjuzz 3"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-1"><img src="images/image4.png" alt="Her Smile 4"></div>
+        <div class="photo-frame shower-frame tilt-1"><img src="images/image4.png" alt="Anjuzz 4"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-2"><img src="images/image5.png" alt="Her Smile 5"></div>
+        <div class="photo-frame shower-frame tilt-2"><img src="images/image5.png" alt="Anjuzz 5"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-3"><img src="images/image6.png" alt="Her Smile 6"></div>
+        <div class="photo-frame shower-frame tilt-3"><img src="images/image6.png" alt="Anjuzz 6"></div>
       </div>
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-4"><img src="images/image7.png" alt="Her Smile 7"></div>
+        <div class="photo-frame shower-frame tilt-4"><img src="images/image7.png" alt="Anjuzz 7"></div>
+      </div>
+            <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-4"><img src="images/image8.png" alt="Anjuzz 8"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-4"><img src="images/image9.png" alt="Anjuzz 9"></div>
       </div>
 
     </div>
@@ -572,22 +603,22 @@
 
   <!-- ================= PAGE 3: THE APPRECIATION ================= -->
   <section id="page3" class="page">
-    <h2>You make everything better.</h2>
+    <h2>You are a force of nature.</h2>
 
     <div class="letter-paper">
       <div class="letter-seal">🌹</div>
 
-      <p class="letter-salutation">Dear Akshaya,</p>
+      <p class="letter-salutation">Dear Anjuzz,</p>
 
       <p class="letter-body">
-        I don't say this enough, but every good thing in my life feels a little better because you're in it. Your kindness has a way of showing up exactly when someone needs it. Your caring nature makes everyone around you feel safe. You listen and feel things so deeply — your empathy is honestly one of the most beautiful things about you. And somehow, through all of it, you're just so easy to love.
+        I don't say this enough, but I have so much respect for who you are. Your kindness isn't just a trait; it's an action that shows up exactly when people need it most. You have this incredible ability to make everyone around you feel secure, yet you never compromise on your own values. Your empathy and your strong will make a rare, brilliant combination.
         <br><br>
-        I hope this coming year brings you everything you deserve — exciting opportunities in your career, new adventures, and a life that keeps getting more wonderful, with me right there beside you.
+        I hope this coming year brings you everything you deserve — exciting new challenges, big wins in your career, and adventures that match your energy.
         <br><br>
-        And since I'm being honest — you are also, without question, the most stubborn person I have ever met in my life. As someone once said, "the only thing more unmovable than a mountain is a woman who has already made up her mind." I wouldn't change a single bit of it. 😉
+        And since I'm being honest — you are also, without question, the most fiercely adamant person I have ever met. As they say, "the only thing more unmovable than a mountain is a woman who has already made up her mind." Your stubbornness is just proof of your conviction, and I honestly admire every bit of it. 😉
       </p>
 
-      <p class="letter-signoff">Forever yours 🌹</p>
+      <p class="letter-signoff">Always cheering you on 🌹</p>
     </div>
 
     <button id="toPage4Btn" class="btn">One last thing...</button>
@@ -595,8 +626,14 @@
 
   <!-- ================= PAGE 4: THE FINAL CELEBRATION ================= -->
   <section id="page4" class="page">
-    <h1>Birthday wishes sweet heart 🎉</h1>
+    <h1>Happy Birthday, Anjuzz 🎉</h1>
     <div class="date-badge">July 26, 2026</div>
+
+    <div class="final-message">
+      <p>
+        I put this together to celebrate the incredible person you are. Keep shining, keep standing your ground, and keep being the amazing force that you are. You deserve the absolute best.
+      </p>
+    </div>
   </section>
 
 <script>
@@ -633,21 +670,16 @@
   }
 
   /* =========================================================================
-     2. RANDOMIZED PHOTO SHOWER GENERATOR (Faster & Denser)
+     2. RANDOMIZED PHOTO SHOWER GENERATOR
   ==========================================================================*/
   function randomizePhotoShower() {
     const photos = document.querySelectorAll('.falling-photo');
     const isMobile = window.innerWidth <= 480;
 
     photos.forEach((photo) => {
-      // Scatter randomly across the screen width (0% to 85% to stay on screen)
       const randomLeft = Math.random() * 85; 
-
-      // Fall Speed: Much faster now. Mobile falls slightly faster than desktop.
       const fallDuration = isMobile ? (6 + Math.random() * 5) : (8 + Math.random() * 6); 
       const swayDuration = 2 + Math.random() * 2.5; 
-
-      // Deep staggering so the shower is constant, filled top to bottom
       const fallDelay = -(Math.random() * fallDuration);
       const swayDelay = -(Math.random() * swayDuration);
 
@@ -655,17 +687,14 @@
       photo.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
       photo.style.animationDelay = `${fallDelay}s, ${swayDelay}s`;
       
-      // Randomize string (thread) lengths for each photo
       const thread = photo.querySelector('.photo-thread');
       if (thread) {
-        // Slightly shorter threads overall to accommodate the denser shower
         const threadHeight = 40 + Math.random() * 120; 
         thread.style.height = `${threadHeight}px`;
       }
     });
   }
 
-  // Run the randomizer on load
   randomizePhotoShower();
 
   /* =========================================================================
@@ -684,22 +713,18 @@
     }, delay);
   }
 
-  // Page 1 -> Page 2
   document.getElementById('envelope-wrap').addEventListener('click', () => {
     goToPage(page1, page2);
   });
 
-  // Page 2 -> Photo Shower
   document.getElementById('toPage3Btn').addEventListener('click', () => {
     goToPage(page2, photoShower);
   });
 
-  // Photo Shower -> Page 3
   document.getElementById('toPage3FromShowerBtn').addEventListener('click', () => {
     goToPage(photoShower, page3);
   });
 
-  // Page 3 -> Page 4, then fire confetti
   document.getElementById('toPage4Btn').addEventListener('click', () => {
     goToPage(page3, page4);
     setTimeout(fireConfettiCelebration, 950);
@@ -729,12 +754,11 @@
   window.addEventListener('resize', clampPhotoShowerPositions);
 
   /* =========================================================================
-     5. CONFETTI CELEBRATION (Page 4)
+     5. CONFETTI CELEBRATION
   ==========================================================================*/
   function fireConfettiCelebration() {
     const colors = ['#c2415a', '#9c2c44', '#e8a6ac', '#ffd0d9', '#fff6f2'];
 
-    // Big central burst
     confetti({
       particleCount: 160,
       spread: 110,
@@ -745,49 +769,24 @@
       ticks: 220
     });
 
-    // Side bursts
     setTimeout(() => {
-      confetti({
-        particleCount: 70,
-        angle: 60,
-        spread: 75,
-        origin: { x: 0, y: 0.6 },
-        colors
-      });
-      confetti({
-        particleCount: 70,
-        angle: 120,
-        spread: 75,
-        origin: { x: 1, y: 0.6 },
-        colors
-      });
+      confetti({ particleCount: 70, angle: 60, spread: 75, origin: { x: 0, y: 0.6 }, colors });
+      confetti({ particleCount: 70, angle: 120, spread: 75, origin: { x: 1, y: 0.6 }, colors });
     }, 220);
 
-    // Falling star wave
     setTimeout(() => {
       confetti({
-        particleCount: 90,
-        spread: 160,
-        startVelocity: 25,
-        gravity: 0.6,
-        origin: { y: 0.15 },
-        colors,
-        shapes: ['star'],
-        scalar: 0.9
+        particleCount: 90, spread: 160, startVelocity: 25, gravity: 0.6,
+        origin: { y: 0.15 }, colors, shapes: ['star'], scalar: 0.9
       });
     }, 550);
 
-    // Gentle sprinkle
     const duration = 3000;
     const end = Date.now() + duration;
     (function frame() {
       confetti({
-        particleCount: 3,
-        startVelocity: 20,
-        spread: 90,
-        origin: { x: Math.random(), y: 0 },
-        colors,
-        scalar: 0.8
+        particleCount: 3, startVelocity: 20, spread: 90,
+        origin: { x: Math.random(), y: 0 }, colors, scalar: 0.8
       });
       if (Date.now() < end) requestAnimationFrame(frame);
     })();
