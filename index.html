@@ -214,12 +214,6 @@
     color: var(--text-soft);
   }
 
-  /* placeholder styling: makes it obvious what to personalize/replace */
-  .placeholder-text{
-    color: var(--rose-red);
-    opacity: 0.7;
-  }
-
   /* ===================================================================
      BUTTONS (shared style)
   ===================================================================*/
@@ -244,35 +238,198 @@
   }
 
   /* ===================================================================
-     PAGE 3: PHOTO PLACEHOLDER
+     PAGE 3: THE APPRECIATION LETTER (pulled from the envelope)
   ===================================================================*/
-  .photo-frame{
-    width: 220px;
-    height: 220px;
-    border-radius: 18px;
-    border: 3px solid #fff;
-    box-shadow: 0 14px 32px rgba(156, 44, 68, 0.25);
-    overflow: hidden;
+  .letter-paper{
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 34px 28px;
+    text-align: left;
+    background:
+      repeating-linear-gradient(
+        transparent, transparent 30px,
+        rgba(194, 65, 90, 0.09) 31px, rgba(194, 65, 90, 0.09) 32px
+      ),
+      linear-gradient(170deg, #fffdfb 0%, var(--cream) 100%);
+    border-radius: 3px 20px 3px 20px;
+    box-shadow: 0 20px 44px rgba(156, 44, 68, 0.22);
+    transform: rotate(-1.4deg);
+  }
+
+  .letter-seal{
+    position: absolute;
+    top: -16px;
+    right: 30px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, var(--rose-gold), var(--rose-red-deep));
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(160deg, #fff, var(--blush-1));
+    font-size: 0.9rem;
+    color: var(--cream);
+    box-shadow: 0 4px 10px rgba(156, 44, 68, 0.4);
+    transform: rotate(9deg);
   }
 
-  .photo-frame img{
+  .letter-salutation{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    color: var(--rose-red-deep);
+    margin-bottom: 16px;
+  }
+
+  .letter-body{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.9vw, 1.2rem);
+    line-height: 1.85;
+    max-width: 100%;
+    color: var(--text-soft);
+    margin-bottom: 22px;
+    max-height: 40vh; 
+    overflow-y: auto;
+    padding-right: 12px;
+  }
+
+  /* Custom styling for the scrollbar to match the theme */
+  .letter-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  .letter-body::-webkit-scrollbar-track {
+    background: rgba(194, 65, 90, 0.05);
+    border-radius: 4px;
+  }
+  .letter-body::-webkit-scrollbar-thumb {
+    background: var(--rose-gold);
+    border-radius: 4px;
+  }
+
+  .letter-signoff{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--text-soft);
+    text-align: right;
+  }
+
+  @media (max-width: 480px){
+    .letter-paper{ padding: 34px 24px 22px; }
+    .letter-seal{ right: 22px; }
+  }
+
+  /* ===================================================================
+     PAGE 2.5: THE PHOTO SHOWER (7 Photos)
+  ===================================================================*/
+  #photoShower .page-text{
+    margin-bottom: -6px;
+  }
+
+  .shower-stage{
+    position: relative;
+    width: 100%;
+    max-width: 820px;
+    height: 50vh;
+    min-height: 300px;
+    overflow: hidden;
+  }
+
+  .falling-photo{
+    position: absolute;
+    /* Move higher up so longer random strings are fully hidden before dropping */
+    top: -400px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: transform;
+  }
+
+  /* Only start the animation when this page becomes active */
+  #photoShower.active .falling-photo {
+    animation-name: photoFall, photoSway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+  }
+
+  /* Increased fall distance to compensate for the higher top position */
+  @keyframes photoFall{
+    0%{ transform: translateY(0); }
+    100%{ transform: translateY(calc(50vh + 550px)); }
+  }
+
+  @keyframes photoSway{
+    0%, 100%{ margin-left: 0px; }
+    50%{ margin-left: 16px; }
+  }
+
+  /* the sparkling golden thread each photo hangs from */
+  .photo-thread{
+    width: 2px;
+    /* Height is now randomized in JS, fallback set here */
+    height: 150px; 
+    background: linear-gradient(180deg,
+      rgba(232, 166, 172, 0) 0%,
+      var(--rose-gold) 35%,
+      #f5d78b 65%,
+      var(--rose-gold) 100%);
+    box-shadow: 0 0 6px rgba(245, 215, 139, 0.75);
+    position: relative;
+  }
+
+  .photo-thread::before,
+  .photo-thread::after{
+    content: '';
+    position: absolute;
+    left: -1.5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #fff6d8;
+    box-shadow: 0 0 6px 2px rgba(245, 215, 139, 0.9);
+    animation: threadSparkle 1.7s ease-in-out infinite;
+  }
+
+  .photo-thread::before{ top: 22%; animation-delay: 0s; }
+  .photo-thread::after{ top: 58%; animation-delay: 0.85s; }
+
+  @keyframes threadSparkle{
+    0%, 100%{ opacity: 0.2; transform: scale(0.7); }
+    50%{ opacity: 1; transform: scale(1.3); }
+  }
+
+  .shower-frame{
+    width: 130px;
+    height: 130px;
+    margin-top: -3px;
+    border-radius: 12px;
+    border: 3px solid #fff;
+    box-shadow: 0 14px 32px rgba(156, 44, 68, 0.25);
+    overflow: hidden;
+    background: linear-gradient(160deg, #fff, var(--blush-1));
+  }
+  
+  .shower-frame img{
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .photo-frame .photo-placeholder-label{
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.95rem;
-    color: var(--rose-red);
-    opacity: 0.65;
-    padding: 12px;
+  .tilt-1{ transform: rotate(-7deg); }
+  .tilt-2{ transform: rotate(5deg); }
+  .tilt-3{ transform: rotate(-4deg); }
+  .tilt-4{ transform: rotate(8deg); }
+  .tilt-5{ transform: rotate(-9deg); }
+
+  @media (max-width: 480px){
+    .shower-stage{ height: 44vh; }
+    .shower-frame{ width: 96px; height: 96px; }
+    @keyframes photoFall{
+      100%{ transform: translateY(calc(44vh + 500px)); }
+    }
   }
 
   /* ===================================================================
@@ -308,7 +465,6 @@
     .envelope{ width: 128px; height: 90px; }
     .envelope-flap{ border-left-width: 64px; border-right-width: 64px; border-top-width: 50px; }
     .envelope-seal{ top: 40px; width: 30px; height: 30px; }
-    .photo-frame{ width: 180px; height: 180px; }
     .btn{ padding: 13px 30px; font-size: 0.95rem; }
     .page{ gap: 20px; }
   }
@@ -327,7 +483,7 @@
         <div class="envelope-flap"></div>
         <div class="envelope-seal">🌹</div>
       </div>
-      <p id="tap-text">I made something for you 🌹............, Akshaya...</p>
+      <p id="tap-text">I made something for you, Akshaya...</p>
       <p id="tap-hint">Tap to open</p>
     </div>
   </section>
@@ -336,32 +492,94 @@
   <section id="page2" class="page">
     <h2>Another beautiful year...</h2>
 
-    <!-- 📝 PLACEHOLDER: Replace the text below with your own memories from this past year -->
-    <p class="page-text placeholder-text">
-      [ Write here about a favorite memory or moment from the past year with Akshaya —
-      a trip you took together, an inside joke, a quiet evening, or a moment that made you
-      fall for her even more. Replace this placeholder before sending. ]
+    <p class="page-text">
+      This past year with you has been one of the best of my life. You are the best thing
+      that has happened to me, and you've supported me through every high and every low
+      without ever asking for anything in return. Here's to many more beautiful years
+      together, Akshaya.
     </p>
 
     <button id="toPage3Btn" class="btn">Next 🌹</button>
+  </section>
+
+  <!-- ================= PAGE 2.5: THE PHOTO SHOWER ================= -->
+  <section id="photoShower" class="page">
+    <h2>Your beautiful pics shower...</h2>
+    <p class="page-text">Just a little rain of your gorgeous smiles.</p>
+
+    <div class="shower-stage">
+      <!-- 📷 7 falling photos. Thread length and start positions are fully randomized in JS -->
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-1">
+          <img src="images/image1.png" alt="Her Smile 1">
+        </div>
+      </div>
+
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-2">
+          <img src="images/image2.png" alt="Her Smile 2">
+        </div>
+      </div>
+
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-3">
+          <img src="images/image3.png" alt="Her Smile 3">
+        </div>
+      </div>
+
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-4">
+          <img src="images/image4.png" alt="Her Smile 4">
+        </div>
+      </div>
+
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-5">
+          <img src="images/image5.png" alt="Her Smile 5">
+        </div>
+      </div>
+
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-1">
+          <img src="images/image6.png" alt="Her Smile 6">
+        </div>
+      </div>
+
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-2">
+          <img src="images/image7.png" alt="Her Smile 7">
+        </div>
+      </div>
+    </div>
+
+    <button id="toPage3FromShowerBtn" class="btn">Keep going...</button>
   </section>
 
   <!-- ================= PAGE 3: THE APPRECIATION ================= -->
   <section id="page3" class="page">
     <h2>You make everything better.</h2>
 
-    <!-- 📝 PLACEHOLDER: Replace the text below with what you love about her -->
-    <p class="page-text placeholder-text">
-      [ Write here about her best qualities — her kindness, her smile, the way she makes
-      ordinary days feel special, or anything else you love about who she is. Replace this
-      placeholder before sending. ]
-    </p>
+    <div class="letter-paper">
+      <div class="letter-seal">🌹</div>
 
-    <!-- 📷 PLACEHOLDER: Replace src below with a path to a photo of the two of you,
-         e.g. <img src="us.jpg" alt="Us together"> — remove the label span once added -->
-    <div class="photo-frame">
-      <!-- <img src="us.jpg" alt="Akshaya and me"> -->
-      <span class="photo-placeholder-label">[ Insert a photo of us here ]</span>
+      <p class="letter-salutation">Dear Akshaya,</p>
+
+      <p class="letter-body">
+        I don't say this enough, but every good thing in my life feels a little better because you're in it. Your kindness has a way of showing up exactly when someone needs it. Your caring nature makes everyone around you feel safe. You listen and feel things so deeply — your empathy is honestly one of the most beautiful things about you. And somehow, through all of it, you're just so easy to love.
+        <br><br>
+        I hope this coming year brings you everything you deserve — exciting opportunities in your career, new adventures, and a life that keeps getting more wonderful, with me right there beside you.
+        <br><br>
+        And since I'm being honest — you are also, without question, the most stubborn person I have ever met in my life. As someone once said, "the only thing more unmovable than a mountain is a woman who has already made up her mind." I wouldn't change a single bit of it. 😉
+      </p>
+
+      <p class="letter-signoff">Forever yours 🌹</p>
     </div>
 
     <button id="toPage4Btn" class="btn">One last thing...</button>
@@ -376,9 +594,6 @@
 <script>
   /* =========================================================================
      1. FALLING ROSE PETALS
-     Continuously generates petal elements that drift down and sway,
-     recycling themselves so the effect runs indefinitely without
-     accumulating DOM nodes.
   ==========================================================================*/
   const petalField = document.getElementById('petal-field');
   const PETAL_COUNT = 22;
@@ -387,10 +602,10 @@
     const petal = document.createElement('div');
     petal.className = 'petal';
 
-    const size = 10 + Math.random() * 14; // 10px - 24px
-    const fallDuration = 8 + Math.random() * 8; // 8s - 16s
-    const swayDuration = 2.5 + Math.random() * 2; // 2.5s - 4.5s
-    const startLeft = Math.random() * 100; // vw
+    const size = 10 + Math.random() * 14; 
+    const fallDuration = 8 + Math.random() * 8; 
+    const swayDuration = 2.5 + Math.random() * 2; 
+    const startLeft = Math.random() * 100; 
     const rotateStart = Math.random() * 360;
 
     petal.style.width = `${size}px`;
@@ -410,10 +625,59 @@
   }
 
   /* =========================================================================
-     2. PAGE NAVIGATION (crossfade between .page sections)
+     2. RANDOMIZED PHOTO SHOWER GENERATOR
+  ==========================================================================*/
+  function randomizePhotoShower() {
+    const photos = document.querySelectorAll('.falling-photo');
+    const totalPhotos = photos.length;
+    
+    // Divide the screen width so photos are spread out horizontally
+    const zoneWidth = 90 / totalPhotos; 
+
+    // Shuffle array to mix which photo goes to which horizontal zone
+    const zones = Array.from({length: totalPhotos}, (_, i) => i);
+    for (let i = zones.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [zones[i], zones[j]] = [zones[j], zones[i]];
+    }
+
+    photos.forEach((photo, index) => {
+      // Horizontal placement
+      const zoneIndex = zones[index];
+      const randomLeft = 2 + (zoneIndex * zoneWidth) + (Math.random() * (zoneWidth - 5));
+
+      // Speeds
+      const fallDuration = 12 + Math.random() * 8; // 12s to 20s
+      const swayDuration = 2.5 + Math.random() * 2; 
+
+      // *CRITICAL*: Negative delay forces the animation to instantly jump ahead.
+      // This spreads the photos vertically across the top, middle, and bottom
+      // of the screen the exact moment the page becomes visible!
+      const fallDelay = -(Math.random() * fallDuration);
+      const swayDelay = -(Math.random() * swayDuration);
+
+      photo.style.left = `${Math.max(0, randomLeft)}%`;
+      photo.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
+      photo.style.animationDelay = `${fallDelay}s, ${swayDelay}s`;
+      
+      // Randomize string (thread) lengths for each photo
+      const thread = photo.querySelector('.photo-thread');
+      if (thread) {
+        const threadHeight = 70 + Math.random() * 160; // Random length between 70px and 230px
+        thread.style.height = `${threadHeight}px`;
+      }
+    });
+  }
+
+  // Run the randomizer on load
+  randomizePhotoShower();
+
+  /* =========================================================================
+     3. PAGE NAVIGATION
   ==========================================================================*/
   const page1 = document.getElementById('page1');
   const page2 = document.getElementById('page2');
+  const photoShower = document.getElementById('photoShower');
   const page3 = document.getElementById('page3');
   const page4 = document.getElementById('page4');
 
@@ -424,24 +688,52 @@
     }, delay);
   }
 
-  // Page 1 -> Page 2 (tap the envelope)
+  // Page 1 -> Page 2
   document.getElementById('envelope-wrap').addEventListener('click', () => {
     goToPage(page1, page2);
   });
 
-  // Page 2 -> Page 3
+  // Page 2 -> Photo Shower
   document.getElementById('toPage3Btn').addEventListener('click', () => {
-    goToPage(page2, page3);
+    goToPage(page2, photoShower);
   });
 
-  // Page 3 -> Page 4, then fire the confetti celebration
+  // Photo Shower -> Page 3
+  document.getElementById('toPage3FromShowerBtn').addEventListener('click', () => {
+    goToPage(photoShower, page3);
+  });
+
+  // Page 3 -> Page 4, then fire confetti
   document.getElementById('toPage4Btn').addEventListener('click', () => {
     goToPage(page3, page4);
     setTimeout(fireConfettiCelebration, 950);
   });
 
   /* =========================================================================
-     3. CONFETTI CELEBRATION (Page 4)
+     4. PHOTO SHOWER DYNAMIC BOUNDARIES
+  ==========================================================================*/
+  function clampPhotoShowerPositions() {
+    const stage = document.querySelector('.shower-stage');
+    if (!stage) return;
+
+    const photos = stage.querySelectorAll('.falling-photo');
+    const stageWidth = stage.clientWidth;
+
+    photos.forEach((photo) => {
+      const frameWidth = photo.querySelector('.shower-frame')?.offsetWidth || 130;
+      const maxLeftPercent = Math.max(0, ((stageWidth - frameWidth) / stageWidth) * 100);
+      const currentLeftPercent = parseFloat(photo.style.left) || 0;
+
+      if (currentLeftPercent > maxLeftPercent) {
+        photo.style.left = `${maxLeftPercent}%`;
+      }
+    });
+  }
+
+  window.addEventListener('resize', clampPhotoShowerPositions);
+
+  /* =========================================================================
+     5. CONFETTI CELEBRATION (Page 4)
   ==========================================================================*/
   function fireConfettiCelebration() {
     const colors = ['#c2415a', '#9c2c44', '#e8a6ac', '#ffd0d9', '#fff6f2'];
@@ -457,7 +749,7 @@
       ticks: 220
     });
 
-    // Side bursts shortly after for a fuller explosion feel
+    // Side bursts
     setTimeout(() => {
       confetti({
         particleCount: 70,
@@ -475,7 +767,7 @@
       });
     }, 220);
 
-    // Falling star-shaped wave from the top
+    // Falling star wave
     setTimeout(() => {
       confetti({
         particleCount: 90,
@@ -489,7 +781,7 @@
       });
     }, 550);
 
-    // A few seconds of gentle continuous sprinkle for a lasting celebratory feel
+    // Gentle sprinkle
     const duration = 3000;
     const end = Date.now() + duration;
     (function frame() {
