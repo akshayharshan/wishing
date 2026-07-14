@@ -295,7 +295,6 @@
     padding-right: 12px;
   }
 
-  /* Custom styling for the scrollbar to match the theme */
   .letter-body::-webkit-scrollbar {
     width: 6px;
   }
@@ -322,7 +321,7 @@
   }
 
   /* ===================================================================
-     PAGE 2.5: THE PHOTO SHOWER (7 Photos)
+     PAGE 2.5: THE PHOTO SHOWER (Denser & Faster)
   ===================================================================*/
   #photoShower .page-text{
     margin-bottom: -6px;
@@ -339,7 +338,6 @@
 
   .falling-photo{
     position: absolute;
-    /* Move higher up so longer random strings are fully hidden before dropping */
     top: -400px; 
     display: flex;
     flex-direction: column;
@@ -347,14 +345,12 @@
     will-change: transform;
   }
 
-  /* Only start the animation when this page becomes active */
   #photoShower.active .falling-photo {
     animation-name: photoFall, photoSway;
     animation-timing-function: linear, ease-in-out;
     animation-iteration-count: infinite, infinite;
   }
 
-  /* Increased fall distance to compensate for the higher top position */
   @keyframes photoFall{
     0%{ transform: translateY(0); }
     100%{ transform: translateY(calc(50vh + 550px)); }
@@ -365,11 +361,8 @@
     50%{ margin-left: 16px; }
   }
 
-  /* the sparkling golden thread each photo hangs from */
   .photo-thread{
     width: 2px;
-    /* Height is now randomized in JS, fallback set here */
-    height: 150px; 
     background: linear-gradient(180deg,
       rgba(232, 166, 172, 0) 0%,
       var(--rose-gold) 35%,
@@ -424,11 +417,13 @@
   .tilt-4{ transform: rotate(8deg); }
   .tilt-5{ transform: rotate(-9deg); }
 
+  /* MOBILE SPECIFIC SHOWER FIXES */
   @media (max-width: 480px){
-    .shower-stage{ height: 44vh; }
-    .shower-frame{ width: 96px; height: 96px; }
+    .shower-stage{ height: 50vh; }
+    /* Made frames smaller so they don't awkwardly clump on tiny screens */
+    .shower-frame{ width: 80px; height: 80px; border-width: 2px; border-radius: 8px;} 
     @keyframes photoFall{
-      100%{ transform: translateY(calc(44vh + 500px)); }
+      100%{ transform: translateY(calc(50vh + 500px)); }
     }
   }
 
@@ -459,7 +454,7 @@
   }
 
   /* ===================================================================
-     RESPONSIVE TWEAKS
+     RESPONSIVE TWEAKS (General)
   ===================================================================*/
   @media (max-width: 480px){
     .envelope{ width: 128px; height: 90px; }
@@ -508,55 +503,68 @@
     <p class="page-text">Just a little rain of your gorgeous smiles.</p>
 
     <div class="shower-stage">
-      <!-- 📷 7 falling photos. Thread length and start positions are fully randomized in JS -->
+      <!-- 📷 14 falling photos (Doubled density for a fuller shower) -->
+      
+      <!-- Set 1 -->
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-1">
-          <img src="images/image1.png" alt="Her Smile 1">
-        </div>
+        <div class="photo-frame shower-frame tilt-1"><img src="images/image1.png" alt="Her Smile 1"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-2"><img src="images/image2.png" alt="Her Smile 2"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-3"><img src="images/image3.png" alt="Her Smile 3"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-4"><img src="images/image4.png" alt="Her Smile 4"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-5"><img src="images/image5.png" alt="Her Smile 5"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-1"><img src="images/image6.png" alt="Her Smile 6"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-2"><img src="images/image7.png" alt="Her Smile 7"></div>
       </div>
 
+      <!-- Set 2 (Duplicates to make the shower thicker) -->
       <div class="falling-photo">
         <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-2">
-          <img src="images/image2.png" alt="Her Smile 2">
-        </div>
+        <div class="photo-frame shower-frame tilt-3"><img src="images/image1.png" alt="Her Smile 1"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-4"><img src="images/image2.png" alt="Her Smile 2"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-5"><img src="images/image3.png" alt="Her Smile 3"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-1"><img src="images/image4.png" alt="Her Smile 4"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-2"><img src="images/image5.png" alt="Her Smile 5"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-3"><img src="images/image6.png" alt="Her Smile 6"></div>
+      </div>
+      <div class="falling-photo">
+        <div class="photo-thread"></div>
+        <div class="photo-frame shower-frame tilt-4"><img src="images/image7.png" alt="Her Smile 7"></div>
       </div>
 
-      <div class="falling-photo">
-        <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-3">
-          <img src="images/image3.png" alt="Her Smile 3">
-        </div>
-      </div>
-
-      <div class="falling-photo">
-        <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-4">
-          <img src="images/image4.png" alt="Her Smile 4">
-        </div>
-      </div>
-
-      <div class="falling-photo">
-        <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-5">
-          <img src="images/image5.png" alt="Her Smile 5">
-        </div>
-      </div>
-
-      <div class="falling-photo">
-        <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-1">
-          <img src="images/image6.png" alt="Her Smile 6">
-        </div>
-      </div>
-
-      <div class="falling-photo">
-        <div class="photo-thread"></div>
-        <div class="photo-frame shower-frame tilt-2">
-          <img src="images/image7.png" alt="Her Smile 7">
-        </div>
-      </div>
     </div>
 
     <button id="toPage3FromShowerBtn" class="btn">Keep going...</button>
@@ -625,34 +633,21 @@
   }
 
   /* =========================================================================
-     2. RANDOMIZED PHOTO SHOWER GENERATOR
+     2. RANDOMIZED PHOTO SHOWER GENERATOR (Faster & Denser)
   ==========================================================================*/
   function randomizePhotoShower() {
     const photos = document.querySelectorAll('.falling-photo');
-    const totalPhotos = photos.length;
-    
-    // Divide the screen width so photos are spread out horizontally
-    const zoneWidth = 90 / totalPhotos; 
+    const isMobile = window.innerWidth <= 480;
 
-    // Shuffle array to mix which photo goes to which horizontal zone
-    const zones = Array.from({length: totalPhotos}, (_, i) => i);
-    for (let i = zones.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [zones[i], zones[j]] = [zones[j], zones[i]];
-    }
+    photos.forEach((photo) => {
+      // Scatter randomly across the screen width (0% to 85% to stay on screen)
+      const randomLeft = Math.random() * 85; 
 
-    photos.forEach((photo, index) => {
-      // Horizontal placement
-      const zoneIndex = zones[index];
-      const randomLeft = 2 + (zoneIndex * zoneWidth) + (Math.random() * (zoneWidth - 5));
+      // Fall Speed: Much faster now. Mobile falls slightly faster than desktop.
+      const fallDuration = isMobile ? (6 + Math.random() * 5) : (8 + Math.random() * 6); 
+      const swayDuration = 2 + Math.random() * 2.5; 
 
-      // Speeds
-      const fallDuration = 12 + Math.random() * 8; // 12s to 20s
-      const swayDuration = 2.5 + Math.random() * 2; 
-
-      // *CRITICAL*: Negative delay forces the animation to instantly jump ahead.
-      // This spreads the photos vertically across the top, middle, and bottom
-      // of the screen the exact moment the page becomes visible!
+      // Deep staggering so the shower is constant, filled top to bottom
       const fallDelay = -(Math.random() * fallDuration);
       const swayDelay = -(Math.random() * swayDuration);
 
@@ -663,7 +658,8 @@
       // Randomize string (thread) lengths for each photo
       const thread = photo.querySelector('.photo-thread');
       if (thread) {
-        const threadHeight = 70 + Math.random() * 160; // Random length between 70px and 230px
+        // Slightly shorter threads overall to accommodate the denser shower
+        const threadHeight = 40 + Math.random() * 120; 
         thread.style.height = `${threadHeight}px`;
       }
     });
