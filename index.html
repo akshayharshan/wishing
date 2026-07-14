@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>For Akshaya 🌹</title>
+
+<!-- Google Fonts: elegant script for headlines, refined serif/sans for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- canvas-confetti CDN for the Page 4 explosion -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<style>
+  /* ===================================================================
+     RESET & BASE
+  ===================================================================*/
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root{
+    --cream: #fff6f2;
+    --blush-1: #ffe3e8;
+    --blush-2: #ffd0d9;
+    --rose-red: #c2415a;
+    --rose-red-deep: #9c2c44;
+    --rose-gold: #e8a6ac;
+    --text-dark: #5a3a41;
+    --text-soft: #7a5158;
+  }
+
+  html, body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* keeps petal animation & page transitions free of scrollbars */
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+  }
+
+  body{
+    position: relative;
+    background: linear-gradient(150deg, var(--cream) 0%, var(--blush-1) 45%, var(--blush-2) 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 14s ease-in-out infinite;
+  }
+
+  @keyframes gradientShift{
+    0%, 100%{ background-position: 0% 50%; }
+    50%{ background-position: 100% 50%; }
+  }
+
+  /* ===================================================================
+     FALLING ROSE PETALS (continuous background animation)
+  ===================================================================*/
+  #petal-field{
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .petal{
+    position: absolute;
+    top: -40px;
+    background: linear-gradient(135deg, var(--rose-red), var(--rose-gold));
+    /* petal shape via border-radius */
+    border-radius: 0% 70% 0% 70%;
+    opacity: 0.75;
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    will-change: transform;
+  }
+
+  @keyframes fall{
+    0%{ transform: translateY(-10vh) rotate(0deg); }
+    100%{ transform: translateY(110vh) rotate(360deg); }
+  }
+
+  @keyframes sway{
+    0%, 100%{ margin-left: 0px; }
+    50%{ margin-left: 40px; }
+  }
+
+  /* ===================================================================
+     PAGE / SCENE CONTAINER
+  ===================================================================*/
+  .page{
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    padding: 28px;
+    text-align: center;
+
+    /* crossfade setup */
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.96);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .page.active{
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+
+  /* ===================================================================
+     PAGE 1: THE INVITATION
+  ===================================================================*/
+  #envelope-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  /* Envelope built with layered CSS shapes */
+  .envelope{
+    position: relative;
+    width: 150px;
+    height: 104px;
+    animation: pulseEnvelope 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseEnvelope{
+    0%, 100%{ transform: scale(1); }
+    50%{ transform: scale(1.06); }
+  }
+
+  .envelope-body{
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #ffffff, var(--blush-1));
+    border-radius: 10px;
+    box-shadow: 0 18px 40px rgba(194, 65, 90, 0.28);
+    border: 1px solid rgba(194, 65, 90, 0.15);
+  }
+
+  /* the triangular flap on top of the envelope */
+  .envelope-flap{
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+    border-top: 58px solid var(--rose-red);
+    filter: drop-shadow(0 4px 6px rgba(156, 44, 68, 0.25));
+  }
+
+  .envelope-seal{
+    position: absolute;
+    top: 46px; left: 50%;
+    transform: translateX(-50%);
+    width: 34px; height: 34px;
+    background: radial-gradient(circle at 35% 35%, var(--rose-gold), var(--rose-red-deep));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #fff6f2;
+    box-shadow: 0 4px 10px rgba(156, 44, 68, 0.4);
+  }
+
+  #tap-text{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    max-width: 480px;
+    color: var(--text-soft);
+  }
+
+  #tap-hint{
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rose-red);
+    animation: fadeBob 2.4s ease-in-out infinite;
+  }
+
+  @keyframes fadeBob{
+    0%, 100%{ opacity: 0.55; transform: translateY(0); }
+    50%{ opacity: 1; transform: translateY(-3px); }
+  }
+
+  /* ===================================================================
+     HEADINGS & BODY TEXT (shared across pages 2-4)
+  ===================================================================*/
+  .page h2{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 6vw, 3rem);
+    color: var(--rose-red-deep);
+  }
+
+  .page-text{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.05rem, 3vw, 1.3rem);
+    line-height: 1.8;
+    max-width: 540px;
+    color: var(--text-soft);
+  }
+
+  /* placeholder styling: makes it obvious what to personalize/replace */
+  .placeholder-text{
+    color: var(--rose-red);
+    opacity: 0.7;
+  }
+
+  /* ===================================================================
+     BUTTONS (shared style)
+  ===================================================================*/
+  .btn{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.02rem;
+    padding: 15px 38px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    color: #fff6f2;
+    background: linear-gradient(135deg, var(--rose-red), var(--rose-red-deep));
+    box-shadow: 0 10px 26px rgba(156, 44, 68, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn:hover{
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 14px 32px rgba(156, 44, 68, 0.45);
+  }
+
+  /* ===================================================================
+     PAGE 3: PHOTO PLACEHOLDER
+  ===================================================================*/
+  .photo-frame{
+    width: 220px;
+    height: 220px;
+    border-radius: 18px;
+    border: 3px solid #fff;
+    box-shadow: 0 14px 32px rgba(156, 44, 68, 0.25);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #fff, var(--blush-1));
+  }
+
+  .photo-frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-frame .photo-placeholder-label{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--rose-red);
+    opacity: 0.65;
+    padding: 12px;
+  }
+
+  /* ===================================================================
+     PAGE 4: THE FINAL CELEBRATION
+  ===================================================================*/
+  #page4 h1{
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem, 8.5vw, 4.6rem);
+    line-height: 1.2;
+    background: linear-gradient(90deg, var(--rose-red-deep), var(--rose-gold) 55%, var(--rose-red-deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 40px rgba(194, 65, 90, 0.3);
+  }
+
+  #page4 .date-badge{
+    padding: 9px 26px;
+    border-radius: 999px;
+    border: 1px solid rgba(194, 65, 90, 0.35);
+    background: rgba(255, 255, 255, 0.55);
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose-red-deep);
+    font-weight: 600;
+  }
+
+  /* ===================================================================
+     RESPONSIVE TWEAKS
+  ===================================================================*/
+  @media (max-width: 480px){
+    .envelope{ width: 128px; height: 90px; }
+    .envelope-flap{ border-left-width: 64px; border-right-width: 64px; border-top-width: 50px; }
+    .envelope-seal{ top: 40px; width: 30px; height: 30px; }
+    .photo-frame{ width: 180px; height: 180px; }
+    .btn{ padding: 13px 30px; font-size: 0.95rem; }
+    .page{ gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Continuous falling rose petals, rendered behind all pages -->
+  <div id="petal-field"></div>
+
+  <!-- ================= PAGE 1: THE INVITATION ================= -->
+  <section id="page1" class="page active">
+    <div id="envelope-wrap">
+      <div class="envelope">
+        <div class="envelope-body"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-seal">🌹</div>
+      </div>
+      <p id="tap-text">I made something for you, Akshaya...</p>
+      <p id="tap-hint">Tap to open</p>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 2: THE JOURNEY ================= -->
+  <section id="page2" class="page">
+    <h2>Another beautiful year...</h2>
+
+    <!-- 📝 PLACEHOLDER: Replace the text below with your own memories from this past year -->
+    <p class="page-text placeholder-text">
+      [ Write here about a favorite memory or moment from the past year with Akshaya —
+      a trip you took together, an inside joke, a quiet evening, or a moment that made you
+      fall for her even more. Replace this placeholder before sending. ]
+    </p>
+
+    <button id="toPage3Btn" class="btn">Next 🌹</button>
+  </section>
+
+  <!-- ================= PAGE 3: THE APPRECIATION ================= -->
+  <section id="page3" class="page">
+    <h2>You make everything better.</h2>
+
+    <!-- 📝 PLACEHOLDER: Replace the text below with what you love about her -->
+    <p class="page-text placeholder-text">
+      [ Write here about her best qualities — her kindness, her smile, the way she makes
+      ordinary days feel special, or anything else you love about who she is. Replace this
+      placeholder before sending. ]
+    </p>
+
+    <!-- 📷 PLACEHOLDER: Replace src below with a path to a photo of the two of you,
+         e.g. <img src="us.jpg" alt="Us together"> — remove the label span once added -->
+    <div class="photo-frame">
+      <!-- <img src="us.jpg" alt="Akshaya and me"> -->
+      <span class="photo-placeholder-label">[ Insert a photo of us here ]</span>
+    </div>
+
+    <button id="toPage4Btn" class="btn">One last thing...</button>
+  </section>
+
+  <!-- ================= PAGE 4: THE FINAL CELEBRATION ================= -->
+  <section id="page4" class="page">
+    <h1>Birthday wishes sweet heart 🎉</h1>
+    <div class="date-badge">July 26, 2026</div>
+  </section>
+
+<script>
+  /* =========================================================================
+     1. FALLING ROSE PETALS
+     Continuously generates petal elements that drift down and sway,
+     recycling themselves so the effect runs indefinitely without
+     accumulating DOM nodes.
+  ==========================================================================*/
+  const petalField = document.getElementById('petal-field');
+  const PETAL_COUNT = 22;
+
+  function createPetal() {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+
+    const size = 10 + Math.random() * 14; // 10px - 24px
+    const fallDuration = 8 + Math.random() * 8; // 8s - 16s
+    const swayDuration = 2.5 + Math.random() * 2; // 2.5s - 4.5s
+    const startLeft = Math.random() * 100; // vw
+    const rotateStart = Math.random() * 360;
+
+    petal.style.width = `${size}px`;
+    petal.style.height = `${size}px`;
+    petal.style.left = `${startLeft}vw`;
+    petal.style.opacity = 0.5 + Math.random() * 0.35;
+    petal.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
+    petal.style.animationDelay = `${-Math.random() * fallDuration}s, ${-Math.random() * swayDuration}s`;
+    petal.style.transform = `rotate(${rotateStart}deg)`;
+
+    petalField.appendChild(petal);
+    return petal;
+  }
+
+  for (let i = 0; i < PETAL_COUNT; i++) {
+    createPetal();
+  }
+
+  /* =========================================================================
+     2. PAGE NAVIGATION (crossfade between .page sections)
+  ==========================================================================*/
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+  const page3 = document.getElementById('page3');
+  const page4 = document.getElementById('page4');
+
+  function goToPage(hideEl, showEl, delay = 900) {
+    hideEl.classList.remove('active');
+    setTimeout(() => {
+      showEl.classList.add('active');
+    }, delay);
+  }
+
+  // Page 1 -> Page 2 (tap the envelope)
+  document.getElementById('envelope-wrap').addEventListener('click', () => {
+    goToPage(page1, page2);
+  });
+
+  // Page 2 -> Page 3
+  document.getElementById('toPage3Btn').addEventListener('click', () => {
+    goToPage(page2, page3);
+  });
+
+  // Page 3 -> Page 4, then fire the confetti celebration
+  document.getElementById('toPage4Btn').addEventListener('click', () => {
+    goToPage(page3, page4);
+    setTimeout(fireConfettiCelebration, 950);
+  });
+
+  /* =========================================================================
+     3. CONFETTI CELEBRATION (Page 4)
+  ==========================================================================*/
+  function fireConfettiCelebration() {
+    const colors = ['#c2415a', '#9c2c44', '#e8a6ac', '#ffd0d9', '#fff6f2'];
+
+    // Big central burst
+    confetti({
+      particleCount: 160,
+      spread: 110,
+      startVelocity: 48,
+      origin: { y: 0.5 },
+      colors,
+      scalar: 1.1,
+      ticks: 220
+    });
+
+    // Side bursts shortly after for a fuller explosion feel
+    setTimeout(() => {
+      confetti({
+        particleCount: 70,
+        angle: 60,
+        spread: 75,
+        origin: { x: 0, y: 0.6 },
+        colors
+      });
+      confetti({
+        particleCount: 70,
+        angle: 120,
+        spread: 75,
+        origin: { x: 1, y: 0.6 },
+        colors
+      });
+    }, 220);
+
+    // Falling star-shaped wave from the top
+    setTimeout(() => {
+      confetti({
+        particleCount: 90,
+        spread: 160,
+        startVelocity: 25,
+        gravity: 0.6,
+        origin: { y: 0.15 },
+        colors,
+        shapes: ['star'],
+        scalar: 0.9
+      });
+    }, 550);
+
+    // A few seconds of gentle continuous sprinkle for a lasting celebratory feel
+    const duration = 3000;
+    const end = Date.now() + duration;
+    (function frame() {
+      confetti({
+        particleCount: 3,
+        startVelocity: 20,
+        spread: 90,
+        origin: { x: Math.random(), y: 0 },
+        colors,
+        scalar: 0.8
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  }
+</script>
+
+</body>
+</html>
